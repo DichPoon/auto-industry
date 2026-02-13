@@ -3,6 +3,7 @@
  * For S7-200, S7-300, S7-400, S7-1200, S7-1500 PLCs
  */
 
+import { createRequire } from 'module';
 import type {
   ProtocolAdapter,
   DeviceConfig,
@@ -17,7 +18,8 @@ import type {
 } from '@auto-industry/core';
 import { DEFAULT_DEVICE_TIMEOUT } from '@auto-industry/core';
 
-// nodes7 doesn't have type definitions
+// nodes7 doesn't have type definitions - use createRequire for ESM compatibility
+const require = createRequire(import.meta.url);
 const NodeS7 = require('nodes7');
 
 /**

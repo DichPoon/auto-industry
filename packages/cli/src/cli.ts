@@ -40,7 +40,9 @@ program
   .option('-c, --config <path>', 'Path to configuration file', './configs/gateway.yaml')
   .option('-l, --log-level <level>', 'Log level (trace|debug|info|warn|error)', 'info')
   .action(async (options) => {
-    const configPath = resolve(options.config);
+    // Resolve config path relative to original working directory (INIT_CWD for pnpm)
+    const cwd = process.env.INIT_CWD || process.cwd();
+    const configPath = resolve(cwd, options.config);
 
     if (!existsSync(configPath)) {
       logger.error(`Configuration file not found: ${configPath}`);
@@ -103,7 +105,9 @@ program
   .option('-o, --output <path>', 'Output path for configuration file', './configs/gateway.yaml')
   .option('-f, --format <format>', 'Output format (yaml|json)', 'yaml')
   .action(async (options) => {
-    const outputPath = resolve(options.output);
+    // Resolve output path relative to original working directory (INIT_CWD for pnpm)
+    const cwd = process.env.INIT_CWD || process.cwd();
+    const outputPath = resolve(cwd, options.output);
 
     if (existsSync(outputPath)) {
       logger.error(`Configuration file already exists: ${outputPath}`);
@@ -166,7 +170,9 @@ program
   .description('List configured devices')
   .option('-c, --config <path>', 'Path to configuration file', './configs/gateway.yaml')
   .action(async (options) => {
-    const configPath = resolve(options.config);
+    // Resolve config path relative to original working directory (INIT_CWD for pnpm)
+    const cwd = process.env.INIT_CWD || process.cwd();
+    const configPath = resolve(cwd, options.config);
 
     if (!existsSync(configPath)) {
       logger.error(`Configuration file not found: ${configPath}`);
