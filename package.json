@@ -1,0 +1,37 @@
+{
+  "name": "auto-industry",
+  "version": "0.1.0",
+  "description": "Industrial Protocol to MCP Gateway - Connect AI to Industrial Devices",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev",
+    "test": "turbo run test",
+    "lint": "turbo run lint",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "gateway": "pnpm --filter @auto-industry/gateway start",
+    "cli": "pnpm --filter @auto-industry/cli start"
+  },
+  "keywords": [
+    "industrial",
+    "mcp",
+    "modbus",
+    "opcua",
+    "mqtt",
+    "s7",
+    "plc",
+    "ai",
+    "gateway"
+  ],
+  "author": "",
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "devDependencies": {
+    "turbo": "^2.3.0",
+    "typescript": "^5.7.0"
+  },
+  "packageManager": "pnpm@9.15.0"
+}

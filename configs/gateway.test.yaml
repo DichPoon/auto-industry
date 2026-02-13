@@ -1,0 +1,37 @@
+# Test Configuration for Auto Industry Gateway
+# Use with local simulators
+
+name: Auto Industry Gateway (Test)
+version: 0.1.0
+logLevel: debug
+
+devices:
+  # MQTT - Local Mosquitto Broker
+  - deviceId: mqtt-local
+    protocol: mqtt
+    name: Local MQTT Broker
+    enabled: true
+    broker: mqtt://localhost
+    port: 1883
+    clientId: auto-industry-test
+    clean: true
+    keepalive: 60
+
+  # Modbus TCP - Local Simulator
+  - deviceId: modbus-sim
+    protocol: modbus
+    name: Modbus TCP Simulator
+    enabled: true
+    timeout: 5000
+    host: localhost
+    port: 5020
+    unitId: 1
+
+  # OPC UA - Local Server
+  # - deviceId: opcua-local
+  #   protocol: opcua
+  #   name: Local OPC UA Server
+  #   enabled: true
+  #   endpoint: opc.tcp://localhost:4840
+  #   securityMode: None
+  #   securityPolicy: None

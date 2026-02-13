@@ -1,0 +1,28 @@
+{
+  "name": "@auto-industry/gateway",
+  "version": "0.1.0",
+  "description": "MCP Gateway for industrial protocol adapters",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "auto-industry-gateway": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@auto-industry/core": "workspace:*",
+    "@modelcontextprotocol/sdk": "^1.0.0",
+    "pino": "^9.5.0",
+    "yaml": "^2.6.0",
+    "zod": "^3.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

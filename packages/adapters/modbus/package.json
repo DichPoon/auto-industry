@@ -1,0 +1,22 @@
+{
+  "name": "@auto-industry/modbus-adapter",
+  "version": "0.1.0",
+  "description": "Modbus TCP/RTU protocol adapter for auto-industry",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@auto-industry/core": "workspace:*",
+    "jsmodbus": "^4.0.0",
+    "serialport": "^12.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}

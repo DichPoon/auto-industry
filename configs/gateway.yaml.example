@@ -1,0 +1,76 @@
+# Auto Industry Gateway Configuration
+# This file configures the MCP gateway and connected devices
+
+name: Auto Industry Gateway
+version: 0.1.0
+logLevel: info  # trace | debug | info | warn | error
+
+# Device configurations
+devices:
+  # Modbus TCP Device Example
+  - deviceId: modbus-plc-1
+    protocol: modbus
+    name: Modbus TCP PLC
+    enabled: true
+    timeout: 5000
+    # Modbus TCP specific options
+    host: 192.168.1.100
+    port: 502
+    unitId: 1
+    reconnect:
+      enabled: true
+      maxAttempts: 10
+      initialDelayMs: 1000
+      maxDelayMs: 30000
+      backoffMultiplier: 2
+
+  # Modbus RTU Device Example (serial)
+  # - deviceId: modbus-rtu-1
+  #   protocol: modbus
+  #   name: Modbus RTU Device
+  #   enabled: false
+  #   timeout: 5000
+  #   transport: rtu
+  #   serialPort: /dev/ttyUSB0
+  #   baudRate: 9600
+  #   dataBits: 8
+  #   stopBits: 1
+  #   parity: none
+  #   unitId: 1
+
+  # OPC UA Server Example
+  # - deviceId: opcua-server-1
+  #   protocol: opcua
+  #   name: OPC UA Server
+  #   enabled: false
+  #   timeout: 10000
+  #   endpoint: opc.tcp://localhost:4840
+  #   securityMode: None  # None | Sign | SignAndEncrypt
+  #   securityPolicy: None
+  #   # username: admin
+  #   # password: secret
+
+  # MQTT Broker Example
+  # - deviceId: mqtt-broker-1
+  #   protocol: mqtt
+  #   name: MQTT Broker
+  #   enabled: false
+  #   broker: mqtt://localhost
+  #   port: 1883
+  #   # username: user
+  #   # password: pass
+  #   clientId: auto-industry-gateway
+  #   clean: true
+  #   keepalive: 60
+
+  # Siemens S7 PLC Example
+  # - deviceId: s7-plc-1
+  #   protocol: s7
+  #   name: Siemens S7-1200 PLC
+  #   enabled: false
+  #   timeout: 5000
+  #   host: 192.168.1.101
+  #   port: 102
+  #   rack: 0
+  #   slot: 1
+  #   plcType: S7-1200  # S7-200 | S7-300 | S7-400 | S7-1200 | S7-1500

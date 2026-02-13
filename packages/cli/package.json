@@ -1,0 +1,32 @@
+{
+  "name": "@auto-industry/cli",
+  "version": "0.1.0",
+  "description": "Command-line interface for Auto Industry Gateway",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "bin": {
+    "auto-industry": "./dist/cli.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "start": "node dist/cli.js",
+    "clean": "rm -rf dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@auto-industry/core": "workspace:*",
+    "@auto-industry/gateway": "workspace:*",
+    "@auto-industry/modbus-adapter": "workspace:*",
+    "@auto-industry/opcua-adapter": "workspace:*",
+    "@auto-industry/mqtt-adapter": "workspace:*",
+    "@auto-industry/s7-adapter": "workspace:*",
+    "commander": "^12.0.0",
+    "pino": "^9.5.0",
+    "yaml": "^2.6.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.0",
+    "typescript": "^5.7.0"
+  }
+}
