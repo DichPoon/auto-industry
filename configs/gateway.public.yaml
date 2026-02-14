@@ -1,0 +1,18 @@
+# Public MQTT Test Configuration
+# Uses public Mosquitto broker - no local setup needed
+
+name: Auto Industry Gateway (Public MQTT)
+version: 0.1.0
+logLevel: info
+
+devices:
+  # Public MQTT Broker
+  - deviceId: mqtt-public
+    protocol: mqtt
+    name: Public Mosquitto Broker
+    enabled: true
+    broker: mqtt://test.mosquitto.org
+    port: 1883
+    clientId: auto-industry-gateway
+    clean: true
+    keepalive: 60

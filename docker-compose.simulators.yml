@@ -2,17 +2,7 @@
 # Usage: docker-compose -f docker-compose.simulators.yml up -d
 
 services:
-  # Modbus TCP Simulator
-  modbus-simulator:
-    image: ghcr.io/ant-open-student-projects/modbus-simulator:latest
-    container_name: modbus-simulator
-    ports:
-      - "5020:5020"
-    environment:
-      - MODBUS_PORT=5020
-    restart: unless-stopped
-
-  # MQTT Broker (Mosquitto)
+  # MQTT Broker (Mosquitto) - 消息代理
   mqtt-broker:
     image: eclipse-mosquitto:2
     container_name: mqtt-broker
@@ -23,10 +13,15 @@ services:
       - ./simulator-config/mosquitto.conf:/mosquitto/config/mosquitto.conf
     restart: unless-stopped
 
-  # OPC UA Simulation Server (Prosys alternative - open source)
-  opcua-server:
-    image: open62541/open62541:latest
-    container_name: opcua-server
+  # Node-RED - 可视化流程编辑器
+  node-red:
+    image: nodered/node-red:3
+    container_name: node-red
     ports:
-      - "4840:4840"
+      - "1880:1880"
+    volumes:
+      - node-red-data:/data
     restart: unless-stopped
+
+volumes:
+  node-red-data:
