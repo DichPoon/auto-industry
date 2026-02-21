@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base Styles */
+:root {
+  --scanline-opacity: 0.03;
+  --noise-opacity: 0.02;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: 'Space Grotesk', system-ui, sans-serif;
+  background-color: #0a0c0f;
+  color: #a8b5cc;
+  overflow: hidden;
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #12161c;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3d4a5c;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52617a;
+}
+
+/* CRT Scanline Effect */
+.scanlines::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.1) 2px,
+    rgba(0, 0, 0, 0.1) 4px
+  );
+  pointer-events: none;
+  z-index: 100;
+}
+
+/* Noise Texture Overlay */
+.noise::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--noise-opacity);
+  pointer-events: none;
+  z-index: 99;
+}
+
+/* Glass Morphism */
+@layer components {
+  .glass {
+    background: rgba(18, 22, 28, 0.7);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(61, 74, 92, 0.3);
+  }
+
+  .glass-dark {
+    background: rgba(10, 12, 15, 0.8);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(61, 74, 92, 0.2);
+  }
+}
+
+/* Status Indicator Glow */
+.status-glow {
+  position: relative;
+}
+
+.status-glow::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: inherit;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.status-glow.online::before {
+  background: radial-gradient(circle, rgba(34, 197, 94, 0.4) 0%, transparent 70%);
+  opacity: 1;
+}
+
+.status-glow.offline::before {
+  background: radial-gradient(circle, rgba(239, 68, 68, 0.4) 0%, transparent 70%);
+  opacity: 1;
+}
+
+.status-glow.connecting::before {
+  background: radial-gradient(circle, rgba(234, 179, 8, 0.4) 0%, transparent 70%);
+  opacity: 1;
+  animation: blink 1s ease-in-out infinite;
+}
+
+/* Data Stream Animation */
+@keyframes data-flow {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.data-stream {
+  animation: data-flow 2s linear infinite;
+}
+
+/* Grid Pattern Background */
+.grid-pattern {
+  background-image:
+    linear-gradient(rgba(61, 74, 92, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(61, 74, 92, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Monospace Data Styling */
+.data-value {
+  font-family: 'JetBrains Mono', monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* Animated Border */
+@keyframes border-flow {
+  0%, 100% {
+    border-color: rgba(6, 182, 212, 0.3);
+  }
+  50% {
+    border-color: rgba(6, 182, 212, 0.6);
+  }
+}
+
+.animated-border {
+  animation: border-flow 3s ease-in-out infinite;
+}
+
+/* Pulse Ring */
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.pulse-ring::after {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  border: 2px solid currentColor;
+  animation: pulse-ring 2s ease-out infinite;
+}
