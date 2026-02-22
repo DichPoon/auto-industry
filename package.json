@@ -11,7 +11,10 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
     "gateway": "pnpm --filter @auto-industry/gateway start",
-    "cli": "pnpm --filter @auto-industry/cli start"
+    "cli": "pnpm --filter @auto-industry/cli start",
+    "dashboard": "pnpm --filter @auto-industry/dashboard dev",
+    "chat": "pnpm --filter @auto-industry/ai-chat dev",
+    "apps": "pnpm --filter @auto-industry/dashboard dev & pnpm --filter @auto-industry/ai-chat dev"
   },
   "keywords": [
     "industrial",
